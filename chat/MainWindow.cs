@@ -1,25 +1,28 @@
-﻿using CefSharp.WinForms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿
 namespace chat
 {
+    using CefSharp;
+    using CefSharp.WinForms;
+    using System;
+    using System.IO;
+    using System.Windows.Forms;
+
     public partial class MainWindow : Form
     {
         public MainWindow()
         {
             InitializeComponent();
 
+            var cefsettings = new CefSettings
+            {
+                CachePath = Path.Combine(Environment.CurrentDirectory, "BrowserCache"),
+            };
+
+            Cef.Initialize(cefsettings);
+            
             var browser = new ChromiumWebBrowser("https://gmail.com/")
             {
-                Dock = DockStyle.Fill
+                Dock = DockStyle.Fill,
             };
 
             browserPanel.Controls.Add(browser);
