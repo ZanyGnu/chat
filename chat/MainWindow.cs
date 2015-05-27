@@ -20,7 +20,7 @@ namespace chat
 
             Cef.Initialize(cefsettings);
             
-            var browser = new ChromiumWebBrowser("https://gmail.com/")
+            var browser = new ChromiumWebBrowser("https://web.whatsapp.com/")
             {
                 Dock = DockStyle.Fill,
             };
