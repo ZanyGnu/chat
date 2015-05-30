@@ -26,7 +26,7 @@ namespace chat
             };
 
             browserPanel.Controls.Add(browser);
-
+            
             
         }
     }
