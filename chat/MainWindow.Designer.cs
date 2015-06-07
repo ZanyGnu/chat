@@ -56,7 +56,6 @@
             this.BackColor = System.Drawing.Color.IndianRed;
             this.ClientSize = new System.Drawing.Size(576, 582);
             this.Controls.Add(this.browserPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "MainWindow";
             this.Text = "Whatsapp";
             this.Resize += new System.EventHandler(this.MainWindow_Resize);
