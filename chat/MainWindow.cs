@@ -84,6 +84,9 @@ namespace chat
             else if (FormWindowState.Normal == this.WindowState)
             {
                 notifyIcon1.Visible = false;
+                this.Show();
+                this.BringToFront();
+                this.Focus();
             }
         }
 
@@ -93,8 +96,7 @@ namespace chat
             {
                 notifyIcon1.Visible = false;
                 this.Show();
-                this.Focus();
-                this.BringToFront();
+                this.WindowState = FormWindowState.Normal;
             }
         }
     }
