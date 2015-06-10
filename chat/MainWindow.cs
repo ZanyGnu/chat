@@ -50,6 +50,13 @@ namespace chat
                             var EvaluateJavaScriptResult = response.Success ? (response.Result ?? "null") : response.Message;
                             Console.WriteLine("Script result = {0}", EvaluateJavaScriptResult);
                             this.Text = EvaluateJavaScriptResult.ToString();
+                            if (this.Text.StartsWith("("))
+                            {
+                                if (!this.Focused)
+                                {
+                                    FlashWindow.Flash(this);
+                                }
+                            }
                         }
                     },
                     TaskScheduler.FromCurrentSynchronizationContext());
