@@ -56,6 +56,13 @@ namespace chat
                                 {
                                     FlashWindow.Flash(this);
                                 }
+                                if (FormWindowState.Minimized == this.WindowState)
+                                {
+                                    if (!notifyIcon1.Visible)
+                                    {
+                                        //notifyIcon1.ShowBalloonTip(20000, "WinWhatsApp", "Messages pending", ToolTipIcon.Info);
+                                    }
+                                }
                             }
                         }
                     },
@@ -84,7 +91,7 @@ namespace chat
             if (FormWindowState.Minimized == this.WindowState)
             {
                 notifyIcon1.Visible = true;
-                //notifyIcon1.ShowBalloonTip(500);
+                notifyIcon1.ShowBalloonTip(500, "WinWhatsapp", "Whatsapp is minimized to the tray", ToolTipIcon.Info);
                 this.Hide();
             }
 
