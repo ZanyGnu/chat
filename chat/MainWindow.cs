@@ -52,6 +52,7 @@ namespace chat
                             this.Text = EvaluateJavaScriptResult.ToString();
                             if (this.Text.StartsWith("("))
                             {
+                                int messageCount = int.Parse(this.Text.Substring(1, this.Text.IndexOf(")") - 1));
                                 if (!this.Focused)
                                 {
                                     FlashWindow.Flash(this);
