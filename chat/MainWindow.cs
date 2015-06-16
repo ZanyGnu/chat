@@ -57,13 +57,6 @@ namespace chat
                                 {
                                     FlashWindow.Flash(this);
                                 }
-                                if (FormWindowState.Minimized == this.WindowState)
-                                {
-                                    if (!notifyIcon1.Visible)
-                                    {
-                                        //notifyIcon1.ShowBalloonTip(20000, "WinWhatsApp", "Messages pending", ToolTipIcon.Info);
-                                    }
-                                }
                             }
                         }
                     },
