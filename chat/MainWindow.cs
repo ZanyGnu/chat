@@ -107,5 +107,10 @@ namespace chat
                 this.WindowState = FormWindowState.Normal;
             }
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
