@@ -110,7 +110,9 @@ namespace chat
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            SettingsForm form = new SettingsForm();
+            DialogResult result = form.ShowDialog();
+            
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
