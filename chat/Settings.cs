@@ -45,6 +45,10 @@
         [Browsable(false)]
         public int NotificationShown { get; set; }
 
+        public bool EscapeToMinimizeToTray { get; set; }
+
+        public bool MimimizeToTray { get; set; }
+
         public void Save()
         {
             TextWriter writer = new StreamWriter(SettingsFileName);
