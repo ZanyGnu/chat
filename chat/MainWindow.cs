@@ -84,11 +84,13 @@ namespace chat
         {
             if (FormWindowState.Minimized == this.WindowState)
             {
-                notifyIcon1.Visible = true;
-                notifyIcon1.ShowBalloonTip(500, "WinWhatsapp", "Whatsapp is minimized to the tray", ToolTipIcon.Info);
-                this.Hide();
+                if (Settings.CurrentSettings.MimimizeToTray)
+                {
+                    notifyIcon1.Visible = true;
+                    notifyIcon1.ShowBalloonTip(500, "WinWhatsapp", "Whatsapp is minimized to the tray", ToolTipIcon.Info);
+                    this.Hide();
+                }
             }
-
             else if (FormWindowState.Normal == this.WindowState)
             {
                 notifyIcon1.Visible = false;
