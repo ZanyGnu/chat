@@ -119,11 +119,15 @@ namespace chat
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == Keys.Escape)
+            if (Settings.CurrentSettings.EscapeToMinimizeToTray)
             {
-                this.WindowState = FormWindowState.Minimized;
-                return false;
+                if (keyData == Keys.Escape)
+                {
+                    this.WindowState = FormWindowState.Minimized;
+                    return false;
+                }
             }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
     }
