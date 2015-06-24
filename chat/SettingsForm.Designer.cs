@@ -29,22 +29,48 @@
         private void InitializeComponent()
         {
             this.propertyGridSettings = new System.Windows.Forms.PropertyGrid();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // propertyGridSettings
             // 
+            this.propertyGridSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.propertyGridSettings.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.propertyGridSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.propertyGridSettings.Location = new System.Drawing.Point(0, 0);
             this.propertyGridSettings.Name = "propertyGridSettings";
-            this.propertyGridSettings.Size = new System.Drawing.Size(396, 293);
+            this.propertyGridSettings.Size = new System.Drawing.Size(396, 243);
             this.propertyGridSettings.TabIndex = 0;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCancel.Location = new System.Drawing.Point(309, 258);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 1;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSave.Location = new System.Drawing.Point(228, 258);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.TabIndex = 2;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 293);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.propertyGridSettings);
             this.Name = "SettingsForm";
             this.Text = "SettingsForm";
@@ -55,5 +81,7 @@
         #endregion
 
         private System.Windows.Forms.PropertyGrid propertyGridSettings;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonSave;
     }
 }
