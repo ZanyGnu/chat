@@ -13,6 +13,7 @@
         private void buttonSave_Click(object sender, System.EventArgs e)
         {
             Settings.CurrentSettings.Save();
+            this.Close();
         }
 
         private void buttonCancel_Click(object sender, System.EventArgs e)
