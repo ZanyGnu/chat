@@ -47,6 +47,10 @@ namespace chat
                         if (!t.IsFaulted)
                         {
                             var response = t.Result;
+                            if (!response.Success)
+                            {
+                                return;
+                            }
                             var EvaluateJavaScriptResult = response.Success ? (response.Result ?? "null") : response.Message;
                             Console.WriteLine("Script result = {0}", EvaluateJavaScriptResult);
                             this.Text = EvaluateJavaScriptResult.ToString();
