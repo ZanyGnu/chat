@@ -33,6 +33,7 @@ namespace chat
             {
                 var task = browser.EvaluateScriptAsync(
                     "(function() { " +
+                        "window.parent.document.body.style.zoom = .90;" + 
                         "var body = document.body, html = document.documentElement; " +
                         "return document.title;" +
                     "})();");
