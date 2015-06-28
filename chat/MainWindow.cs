@@ -17,7 +17,7 @@ namespace chat
 
             var cefsettings = new CefSettings
             {
-                CachePath = Path.Combine(Environment.CurrentDirectory, "BrowserCache"),
+                CachePath = Settings.CurrentSettings.BrowserCacheLocation,
             };
 
             Cef.Initialize(cefsettings);
