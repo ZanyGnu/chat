@@ -2,7 +2,10 @@
 {
     using System;
     using System.ComponentModel;
+    using System.Drawing.Design;
     using System.IO;
+    using System.Windows.Forms;
+    using System.Windows.Forms.Design;
     using System.Xml.Serialization;
 
     public class Settings
@@ -43,11 +46,14 @@
         public int SettingsVersion { get; set; }
 
         [Browsable(false)]
-        public int NotificationShown { get; set; }
+        public bool NotificationShown { get; set; }
 
         public bool EscapeToMinimizeToTray { get; set; }
 
         public bool MimimizeToTray { get; set; }
+
+        [EditorAttribute(typeof(FolderNameEditor), typeof(UITypeEditor))]
+        public string BrowserCacheLocation { get; set; }
 
         public void Save()
         {
@@ -68,7 +74,7 @@
                 }
 
                 Settings defaultSettings = new Settings();
-                defaultSettings.LoadDefaultValuse();
+                defaultSettings.LoadDefaultValues();
                 defaultSettings.Save();
 
                 return defaultSettings;
@@ -92,9 +98,12 @@
             settings.Save();
         }
 
-        private void LoadDefaultValuse()
+        private void LoadDefaultValues()
         {
-            
+            this.BrowserCacheLocation = Path.Combine(AppDataFolder, "BrowserCache");
+            this.EscapeToMinimizeToTray = true;
+            this.MimimizeToTray = true;
+            this.NotificationShown = false;
         }
     }
 }
