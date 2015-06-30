@@ -103,7 +103,7 @@
             this.BrowserCacheLocation = Path.Combine(AppDataFolder, "BrowserCache");
             this.EscapeToMinimizeToTray = true;
             this.MimimizeToTray = true;
-            this.NotificationShown = false;
+            this.NotificationShown = false; 
         }
     }
 }

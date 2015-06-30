@@ -91,9 +91,9 @@ namespace chat
             {
                 if (Settings.CurrentSettings.MimimizeToTray)
                 {
-                    if (Settings.CurrentSettings.NotificationShown)
+                    notifyIcon1.Visible = true;
+                    if (!Settings.CurrentSettings.NotificationShown)
                     {
-                        notifyIcon1.Visible = true;
                         notifyIcon1.ShowBalloonTip(500, "WinWhatsapp", "Whatsapp is minimized to the tray. Click here to stop showing this notification", ToolTipIcon.Info);
                         notifyIcon1.BalloonTipClicked += NotifyIcon1_BalloonTipClicked;
                     }
