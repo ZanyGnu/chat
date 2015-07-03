@@ -10,8 +10,12 @@ namespace chat
 
     public partial class MainWindow : Form
     {
+        public Settings Settings; 
+
         public MainWindow()
         {
+            this.Settings = new Settings();
+
             InitializeComponent();
 
             var cefsettings = new CefSettings
@@ -112,7 +116,7 @@ namespace chat
         private void NotifyIcon1_BalloonTipClicked(object sender, EventArgs e)
         {
             Settings.CurrentSettings.NotificationShown = true;
-            Settings.CurrentSettings.Save();
+            Settings.Save();
         }
 
         private void notifyIcon1_Click(object sender, EventArgs e)
@@ -127,7 +131,7 @@ namespace chat
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SettingsForm form = new SettingsForm();
+            SettingsForm form = new SettingsForm(this.Settings);
             DialogResult result = form.ShowDialog();
             
         }

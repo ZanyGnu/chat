@@ -9,80 +9,63 @@
 
     public class Settings
     {
-        private static readonly object LockObj = new object();
+        private SettingsModel currentSettings;
 
-        private static int SettingsVersion0 = 0;
-        private static int CurrentSettingsVersion = SettingsVersion0;
-
-        private volatile static Settings currentSettings;
-
-        public static Settings CurrentSettings
+        public SettingsModel CurrentSettings
         {
             get
             {
-                if (currentSettings == null)
-                {
-                    lock (LockObj)
-                    {
-                        if (currentSettings == null)
-                        {
-                            currentSettings = Settings.Rehydrate();
-                        }
-                    }
-                }
-
-                return currentSettings;
+                return this.currentSettings;
             }
         }
 
-        protected static readonly String AppDataFolder = Path.Combine(
+        private static readonly String DefaultAppDataFolder = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "WinWhatsApp");
+        private static readonly String DefaultSettingsFileName = "WinWhatsApp.settings.xml";
 
-        protected static readonly string SettingsFileName = Path.Combine(AppDataFolder, "WinWhatsApp.settings.xml");
-
-
-        [Browsable(false)]
-        public int SettingsVersion { get; set; }
-
-        [Browsable(false)]
-        public bool NotificationShown { get; set; }
-
-        public bool EscapeToMinimizeToTray { get; set; }
-
-        public bool MimimizeToTray { get; set; }
-
-        [EditorAttribute(typeof(FolderNameEditor), typeof(UITypeEditor))]
-        public string BrowserCacheLocation { get; set; }
+        private string settingsFileName;
 
         public void Save()
         {
-            TextWriter writer = new StreamWriter(SettingsFileName);
+            TextWriter writer = new StreamWriter(this.settingsFileName);
 
             XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-            serializer.Serialize(writer, this);
+            serializer.Serialize(writer, this.currentSettings);
             writer.Close();
         }
 
-        public static Settings Rehydrate()
+        public Settings():this(Path.Combine(DefaultAppDataFolder, DefaultSettingsFileName))
         {
-            if (!File.Exists(SettingsFileName))
+
+        }
+
+        public Settings(string settingsFileName)
+        {
+            this.settingsFileName = settingsFileName;
+            this.currentSettings = this.Rehydrate();
+        }
+
+        private SettingsModel Rehydrate()
+        {
+            if (!File.Exists(this.settingsFileName))
             {
-                if (!Directory.Exists(AppDataFolder))
+                string settingsDirectory = Path.GetDirectoryName(this.settingsFileName);
+                if (!Directory.Exists(settingsDirectory))
                 {
-                    Directory.CreateDirectory(AppDataFolder);
+                    Directory.CreateDirectory(settingsDirectory);
                 }
 
-                Settings defaultSettings = new Settings();
-                defaultSettings.LoadDefaultValues();
-                defaultSettings.Save();
+                SettingsModel defaultSettings = new SettingsModel();
+                this.LoadDefaultValues(defaultSettings);
+                this.Save();
 
                 return defaultSettings;
             }
 
-            FileStream fileReader = File.OpenRead(SettingsFileName);
+            FileStream fileReader = File.OpenRead(this.settingsFileName);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-            Settings settings = (Settings)serializer.Deserialize(fileReader);
+            XmlSerializer serializer = new XmlSerializer(typeof(SettingsModel));
+            SettingsModel settings = (SettingsModel)serializer.Deserialize(fileReader);
 
             fileReader.Close();
 
@@ -91,18 +74,17 @@
             return settings;
         }
 
-        private static void SetNewSettingsDefaultValues(Settings settings)
-        {
-            
-            settings.Save();
+        private void SetNewSettingsDefaultValues(SettingsModel settings)
+        {            
+
         }
 
-        private void LoadDefaultValues()
+        private void LoadDefaultValues(SettingsModel settings)
         {
-            this.BrowserCacheLocation = Path.Combine(AppDataFolder, "BrowserCache");
-            this.EscapeToMinimizeToTray = true;
-            this.MimimizeToTray = true;
-            this.NotificationShown = false; 
+            settings.BrowserCacheLocation = Path.Combine(DefaultAppDataFolder, "BrowserCache");
+            settings.EscapeToMinimizeToTray = true;
+            settings.MimimizeToTray = true;
+            settings.NotificationShown = false; 
         }
     }
 }

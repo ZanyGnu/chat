@@ -4,15 +4,18 @@
     
     public partial class SettingsForm : Form
     {
-        public SettingsForm()
+        private Settings Settings;
+
+        public SettingsForm(Settings settings)
         {
+            this.Settings = settings;
             InitializeComponent();
             this.propertyGridSettings.SelectedObject = Settings.CurrentSettings;
         }
 
         private void buttonSave_Click(object sender, System.EventArgs e)
         {
-            Settings.CurrentSettings.Save();
+            Settings.Save();
             this.Close();
         }
 
