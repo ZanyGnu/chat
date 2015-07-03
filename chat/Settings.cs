@@ -27,9 +27,15 @@
 
         public void Save()
         {
+            string settingsDirectory = Path.GetDirectoryName(this.settingsFileName);
+            if (!Directory.Exists(settingsDirectory))
+            {
+                Directory.CreateDirectory(settingsDirectory);
+            }
+
             TextWriter writer = new StreamWriter(this.settingsFileName);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+            XmlSerializer serializer = new XmlSerializer(typeof(SettingsModel));
             serializer.Serialize(writer, this.currentSettings);
             writer.Close();
         }
@@ -49,15 +55,8 @@
         {
             if (!File.Exists(this.settingsFileName))
             {
-                string settingsDirectory = Path.GetDirectoryName(this.settingsFileName);
-                if (!Directory.Exists(settingsDirectory))
-                {
-                    Directory.CreateDirectory(settingsDirectory);
-                }
-
                 SettingsModel defaultSettings = new SettingsModel();
                 this.LoadDefaultValues(defaultSettings);
-                this.Save();
 
                 return defaultSettings;
             }
@@ -69,14 +68,7 @@
 
             fileReader.Close();
 
-            SetNewSettingsDefaultValues(settings);
-
             return settings;
-        }
-
-        private void SetNewSettingsDefaultValues(SettingsModel settings)
-        {            
-
         }
 
         private void LoadDefaultValues(SettingsModel settings)
