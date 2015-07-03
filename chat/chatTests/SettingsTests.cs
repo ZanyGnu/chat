@@ -12,15 +12,13 @@ namespace chat.Tests
     public class SettingsTests
     {
         [TestMethod()]
-        public void SaveTest()
+        public void BasicTest()
         {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void RehydrateTest()
-        {
-            Assert.Fail();
+            Settings settings = new Settings();
+            // check construction
+            Assert.IsTrue(settings.CurrentSettings != null);
+            // check default values
+            Assert.IsTrue(settings.CurrentSettings.MimimizeToTray == true);
         }
     }
 }
