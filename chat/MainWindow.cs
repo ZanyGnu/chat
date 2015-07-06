@@ -74,7 +74,7 @@ namespace chat
          
         }
 
-        public static async Task Run(Action action, TimeSpan period, CancellationToken cancellationToken)
+        private static async Task Run(Action action, TimeSpan period, CancellationToken cancellationToken)
         {
             while (!cancellationToken.IsCancellationRequested)
             {
@@ -83,7 +83,7 @@ namespace chat
             }
         }
 
-        public static Task Run(Action action, TimeSpan period)
+        private static Task Run(Action action, TimeSpan period)
         {
             return Run(action, period, CancellationToken.None);
         }
